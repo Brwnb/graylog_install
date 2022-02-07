@@ -7,8 +7,11 @@
 # https://docs.graylog.org/v1/docs/ubuntu
 
 
+
 [ $UID -eq "0" ] || { echo "It's necessary to be root to install graylog "\
 && exit 1 ;}
+
+export PATH=$PATH:/usr/local/sbin:/sbin:/usr/sbin
 
 apt-get update && apt-get upgrade
 # Install dependecy and openjdk
@@ -46,3 +49,15 @@ systemctl restart elasticsearch.service
 
 systemctl enable mongod.service
 systemctl restart mongod.service
+
+# installing graylog-server
+
+mkdir /tmp/graylog_install
+cd /tmp/graylog_install
+
+wget https://packages.graylog2.org/repo/packages/graylog-4.2-repository_lastest.deb
+dpkg -i graylog-4.2-repository_lastest.deb
+apt update && apt install graylog-server
+
+systemctl start graylog-server
+systemctl enable graylog-server
