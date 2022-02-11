@@ -55,7 +55,7 @@ systemctl restart mongod.service
 mkdir /tmp/graylog_install
 cd /tmp/graylog_install
 
-wget https://packages.graylog2.org/repo/packages/graylog-4.2-repository_lastest.deb
+wget https://packages.graylog2.org/repo/packages/graylog-4.2-repository_latest.deb
 dpkg -i graylog-4.2-repository_lastest.deb
 apt update && apt install graylog-server
 
